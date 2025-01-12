@@ -1,5 +1,6 @@
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
+from datetime import datetime
 
 # Setup Google Sheets
 def setup_google_sheet():
@@ -8,3 +9,4 @@ def setup_google_sheet():
     client = gspread.authorize(creds)
     sheet = client.open("FitnessTracker").sheet1
     return sheet
+
