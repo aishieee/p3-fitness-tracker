@@ -45,6 +45,16 @@ def ensure_headers(sheet):
         sheet.insert_row(required_headers, index=1)
         print("✔️ Added headers to the Google Sheet.")
 
+def get_user_exercise():
+    """Collect exercise details from the user."""
+     # User to enter the exercise name
+    name = input("Enter the exercise name: ").strip()
+    # Define list of muscle groups
+    muscle_groups = ["Chest", "Back", "Legs", "Arms", "Shoulders", "Core", "Cardio"]
+    print("Choose a muscle group:")
+    for i, group in enumerate(muscle_groups, start=1):
+        print(f"{i}. {group}")
+    muscle_group = None
 
 
    
