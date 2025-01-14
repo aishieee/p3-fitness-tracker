@@ -19,4 +19,7 @@ def main():
     sheet = setup_google_sheet()
     # Add headers if not found
     ensure_headers(sheet)
+    while True:
+        print("\n1. Add an exercise\n2. View weekly summary\n3. Exit") # Display menu options
+
    
