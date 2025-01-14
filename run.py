@@ -10,3 +10,13 @@ def setup_google_sheet():
     sheet = client.open("FitnessTracker").sheet1
     return sheet
 
+def main():
+    print("🏋️‍♂️ Welcome to the Fitness Tracker!")
+
+# Main fitness tracker
+def main():
+    print("🏋️‍♂️ Welcome to the Fitness Tracker!")
+    sheet = setup_google_sheet()
+    # Add headers if not found
+    ensure_headers(sheet)
+   

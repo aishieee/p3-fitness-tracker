@@ -1,14 +1,18 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Introduction 
 
-Welcome,
+FitnessTracker is a command-line Python application designed to help users track their fitness exercises and store data in Google Sheets. This allows users to monitor their progress over time effectively.
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **May 14, 2024**
+The application is ideal for individuals who want to record their weekly fitness journey, including:
 
-## Reminders
+- The exercises performed
+- The number of repetitions per set
+- The weight used
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+By providing a clear record of these details, FitnessTracker encourages the progressive overload technique, helping users steadily increase their performance and achieve their fitness goals.trong they have gotten from the weight and total reps they have done for each exercise. 
+
+## Flowchart
+
+![Flow chart](assets/flow-chart.png)
 
 ## Creating the Heroku app
 
