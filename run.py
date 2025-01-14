@@ -37,5 +37,14 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
+def ensure_headers(sheet):
+    """Ensure the sheet has proper headers."""
+    existing_headers = sheet.row_values(1)  # Fetch the first row
+    required_headers = ["Date", "Exercise Name", "Muscle Group", "Sets", "Reps per Set", "Total Reps", "Weight (kg)"]
+    if existing_headers != required_headers:
+        sheet.insert_row(required_headers, index=1)
+        print("✔️ Added headers to the Google Sheet.")
+
+
 
    
