@@ -68,6 +68,19 @@ def get_user_exercise():
         reps = int(input(f"Enter the number of reps for set {s + 1}: "))
         reps_per_set.append(reps)
     total_reps = sum(reps_per_set)
+    weight = input("Enter the weight used (kg), or press Enter if none: ")
+    weight = float(weight.strip()) if weight.strip() else 0
+    date = datetime.now().strftime("%Y-%m-%d")
+    return {
+        "date": date,
+        "name": name,
+        "muscle_group": muscle_group,
+        "sets": sets,
+        "reps_per_set": ', '.join(map(str, reps_per_set)),
+        "total_reps": total_reps,
+        "weight": weight
+    }
+
 
 
 
