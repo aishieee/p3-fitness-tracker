@@ -81,6 +81,22 @@ def get_user_exercise():
         "weight": weight
     }
 
+def save_exercise_to_google_sheet(exercise, sheet):
+    """Append exercise details to Google Sheets."""
+    try:
+        sheet.append_row([
+            exercise["date"],
+            exercise["name"],
+            exercise["muscle_group"],
+            exercise["sets"],
+            exercise["reps_per_set"],
+            exercise["total_reps"],
+            exercise["weight"]
+        ])
+        print(f"✔️ Saved: {exercise['name']} - {exercise['muscle_group']} - {exercise['total_reps']} reps - {exercise['weight']}kg")
+    except Exception as e:
+        print(f"❌ Error saving to Google Sheets: {e}")
+
 
 
 
