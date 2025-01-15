@@ -61,6 +61,13 @@ def get_user_exercise():
             muscle_group = muscle_groups[choice - 1]
         except (ValueError, IndexError):
             print("Invalid choice. Please try again.")
+    # Allow breaking reps into sets
+    sets = int(input("Enter the number of sets: "))
+    reps_per_set = []
+    for s in range(sets):
+        reps = int(input(f"Enter the number of reps for set {s + 1}: "))
+        reps_per_set.append(reps)
+    total_reps = sum(reps_per_set)
 
 
 
