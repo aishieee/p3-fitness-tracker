@@ -55,6 +55,13 @@ def get_user_exercise():
     for i, group in enumerate(muscle_groups, start=1):
         print(f"{i}. {group}")
     muscle_group = None
+    while not muscle_group:
+        try:
+            choice = int(input("Enter the number: "))
+            muscle_group = muscle_groups[choice - 1]
+        except (ValueError, IndexError):
+            print("Invalid choice. Please try again.")
+
 
 
    
