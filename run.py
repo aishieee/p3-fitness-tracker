@@ -97,6 +97,15 @@ def save_exercise_to_google_sheet(exercise, sheet):
     except Exception as e:
         print(f"❌ Error saving to Google Sheets: {e}")
 
+def summarize_weekly_exercises(sheet):
+    """Generate and display a weekly summary of exercises."""
+    try:
+        records = sheet.get_all_records()
+        if not records:
+            print("⚠️ No exercises logged yet.")
+            return
+
+
 
 
 
