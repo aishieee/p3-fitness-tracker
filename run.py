@@ -113,6 +113,10 @@ def summarize_weekly_exercises(sheet):
                 weekly_stats[muscle_group] = {"reps": 0, "weight": 0}
             weekly_stats[muscle_group]["reps"] += int(total_reps)
             weekly_stats[muscle_group]["weight"] += float(weight)
+        print("\n📊 Weekly Summary:")
+        for muscle_group, stats in weekly_stats.items():
+            print(f"{muscle_group}: {stats['reps']} reps, {stats['weight']} kg lifted")
+
 
 
 
