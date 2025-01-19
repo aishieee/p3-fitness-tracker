@@ -109,6 +109,10 @@ def summarize_weekly_exercises(sheet):
             muscle_group = record["Muscle Group"]
             total_reps = record.get("Total Reps", 0)
             weight = record.get("Weight (kg)", 0)
+        if muscle_group not in weekly_stats:
+                weekly_stats[muscle_group] = {"reps": 0, "weight": 0}
+            weekly_stats[muscle_group]["reps"] += int(total_reps)
+            weekly_stats[muscle_group]["weight"] += float(weight)
 
 
 
