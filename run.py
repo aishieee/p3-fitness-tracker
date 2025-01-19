@@ -104,7 +104,11 @@ def summarize_weekly_exercises(sheet):
         if not records:
             print("⚠️ No exercises logged yet.")
             return
-
+        weekly_stats = {}
+        for record in records:
+            muscle_group = record["Muscle Group"]
+            total_reps = record.get("Total Reps", 0)
+            weight = record.get("Weight (kg)", 0)
 
 
 
