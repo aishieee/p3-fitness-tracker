@@ -10,9 +10,6 @@ def setup_google_sheet():
     sheet = client.open("FitnessTracker").sheet1
     return sheet
 
-def main():
-    print("🏋️‍♂️ Welcome to the Fitness Tracker!")
-
 # Main fitness tracker
 def main():
     print("🏋️‍♂️ Welcome to the Fitness Tracker!")
@@ -109,7 +106,7 @@ def summarize_weekly_exercises(sheet):
             muscle_group = record["Muscle Group"]
             total_reps = record.get("Total Reps", 0)
             weight = record.get("Weight (kg)", 0)
-        if muscle_group not in weekly_stats:
+            if muscle_group not in weekly_stats:
                 weekly_stats[muscle_group] = {"reps": 0, "weight": 0}
             weekly_stats[muscle_group]["reps"] += int(total_reps)
             weekly_stats[muscle_group]["weight"] += float(weight)
@@ -120,10 +117,8 @@ def summarize_weekly_exercises(sheet):
         total_reps = sum(stats["reps"] for stats in weekly_stats.values())
         total_weight = sum(stats["weight"] for stats in weekly_stats.values())
         print(f"Total: {total_reps} reps, {total_weight} kg lifted")
+    except Exception as e:
+        print(f"❌ Error generating summary: {e}")
 
-
-
-
-
-
-   
+if __name__ == "__main__":
+    main()
