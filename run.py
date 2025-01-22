@@ -2,13 +2,19 @@ import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
+
 # Setup Google Sheets
 def setup_google_sheet():
-    scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name("credentials.json", scope)
+    scope = [
+        "https://spreadsheets.google.com/feeds",
+        "https://www.googleapis.com/auth/drive"]
+    creds = ServiceAccountCredentials.from_json_keyfile_name(
+        "credentials.json",
+        scope)
     client = gspread.authorize(creds)
     sheet = client.open("FitnessTracker").sheet1
     return sheet
+
 
 # Main fitness tracker
 def main():
@@ -17,7 +23,8 @@ def main():
     # Add headers if not found
     ensure_headers(sheet)
     while True:
-        print("\n1. Add an exercise\n2. View weekly summary\n3. Exit") # Display menu options
+        # Display menu options
+        print("\n1. Add an exercise\n2. View weekly summary\n3. Exit")
         # Get user input for their chosen action
         choice = input("Choose an option: ")
         # Handle user choices
@@ -34,20 +41,38 @@ def main():
         else:
             print("Invalid choice. Please try again.")
 
+
 def ensure_headers(sheet):
     """Ensure the sheet has proper headers."""
     existing_headers = sheet.row_values(1)  # Fetch the first row
-    required_headers = ["Date", "Exercise Name", "Muscle Group", "Sets", "Reps per Set", "Total Reps", "Weight (kg)"]
+    required_headers = [
+        "Date",
+        "Exercise Name",
+        "Muscle Group",
+        "Sets",
+        "Reps per Set",
+        "Total Reps",
+        "Weight (kg)"
+        ]
     if existing_headers != required_headers:
         sheet.insert_row(required_headers, index=1)
         print("✔️ Added headers to the Google Sheet.")
 
+
 def get_user_exercise():
     """Collect exercise details from the user."""
-     # User to enter the exercise name
+    # User to enter the exercise name
     name = input("Enter the exercise name: ").strip()
     # Define list of muscle groups
-    muscle_groups = ["Chest", "Back", "Legs", "Arms", "Shoulders", "Core", "Cardio"]
+    muscle_groups = [
+        "Chest",
+        "Back",
+        "Legs",
+        "Arms",
+        "Shoulders",
+        "Core",
+        "Cardio"
+        ]
     print("Choose a muscle group:")
     for i, group in enumerate(muscle_groups, start=1):
         print(f"{i}. {group}")
@@ -78,6 +103,7 @@ def get_user_exercise():
         "weight": weight
     }
 
+
 def save_exercise_to_google_sheet(exercise, sheet):
     """Append exercise details to Google Sheets."""
     try:
@@ -90,9 +116,12 @@ def save_exercise_to_google_sheet(exercise, sheet):
             exercise["total_reps"],
             exercise["weight"]
         ])
-        print(f"✔️ Saved: {exercise['name']} - {exercise['muscle_group']} - {exercise['total_reps']} reps - {exercise['weight']}kg")
+        message = f"{exercise['name']} - {exercise['muscle_group']} - "
+        message2 = f"{exercise['total_reps']} reps - {exercise['weight']}kg"
+        print(f"✔️ Saved: {message}{message2}")
     except Exception as e:
         print(f"❌ Error saving to Google Sheets: {e}")
+
 
 def summarize_weekly_exercises(sheet):
     """Generate and display a weekly summary of exercises."""
@@ -112,13 +141,15 @@ def summarize_weekly_exercises(sheet):
             weekly_stats[muscle_group]["weight"] += float(weight)
         print("\n📊 Weekly Summary:")
         for muscle_group, stats in weekly_stats.items():
-            print(f"{muscle_group}: {stats['reps']} reps, {stats['weight']} kg lifted")
+            message = f"{stats['reps']} reps, {stats['weight']} kg lifted"
+            print(f"{muscle_group}: {message}")
         # Calculate total stats
         total_reps = sum(stats["reps"] for stats in weekly_stats.values())
         total_weight = sum(stats["weight"] for stats in weekly_stats.values())
         print(f"Total: {total_reps} reps, {total_weight} kg lifted")
     except Exception as e:
         print(f"❌ Error generating summary: {e}")
+
 
 if __name__ == "__main__":
     main()
