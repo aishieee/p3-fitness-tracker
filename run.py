@@ -1,10 +1,13 @@
 import gspread
+import os
+import json
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
 
 # Setup Google Sheets
 def setup_google_sheet():
+    creds_json = os.environ.get('CREDENTIALS_JSON')
     scope = [
         "https://spreadsheets.google.com/feeds",
         "https://www.googleapis.com/auth/drive"]
@@ -14,7 +17,6 @@ def setup_google_sheet():
     client = gspread.authorize(creds)
     sheet = client.open("FitnessTracker").sheet1
     return sheet
-
 
 # Main fitness tracker
 def main():
