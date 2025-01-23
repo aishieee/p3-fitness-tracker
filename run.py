@@ -4,16 +4,17 @@ import json
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
-
 # Setup Google Sheets
 def setup_google_sheet():
-    creds_json = os.environ.get('CREDENTIALS_JSON')
     scope = [
         "https://spreadsheets.google.com/feeds",
-        "https://www.googleapis.com/auth/drive"]
-    creds = ServiceAccountCredentials.from_json_keyfile_name(
-        "credentials.json",
-        scope)
+        "https://www.googleapis.com/auth/drive",
+    ]
+    # Load the credentials from the environment variable
+    creds_json = os.environ.get("GOOGLE_CREDENTIALS")
+    if not creds_json:
+        raise ValueError("Missing Google credentials in environment variables.")
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(creds_json), scope)
     client = gspread.authorize(creds)
     sheet = client.open("FitnessTracker").sheet1
     return sheet
