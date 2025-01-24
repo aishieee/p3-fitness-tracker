@@ -126,7 +126,7 @@ def save_exercise_to_google_sheet(exercise, sheet):
         print(f"❌ Error saving to Google Sheets: {e}")
 
 
-def summarize_weekly_exercises(sheet):
+def summarise_weekly_exercises(sheet):
     """Generate and display a weekly summary of exercises."""
     try:
         records = sheet.get_all_records()
