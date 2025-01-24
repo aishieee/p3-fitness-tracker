@@ -4,11 +4,7 @@ import json
 from oauth2client.service_account import ServiceAccountCredentials
 from datetime import datetime
 
-import gspread
-import os
-import json
-from oauth2client.service_account import ServiceAccountCredentials
-from datetime import datetime
+# Setup Google Sheets
 
 
 # Setup Google Sheets
@@ -22,9 +18,8 @@ def setup_google_sheet():
     creds_json = os.environ.get("GOOGLE_CREDENTIALS")
     if not creds_json:
         raise ValueError("Missing Google credentials in environment variable.")
-    creds = ServiceAccountCredentials.from_json_keyfile_name(
-        "credentials.json",
-        scope)
+
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(json.loads(creds_json), scope)
     client = gspread.authorize(creds)
     sheet = client.open("FitnessTracker").sheet1
     return sheet
